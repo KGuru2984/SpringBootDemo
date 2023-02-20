@@ -11,6 +11,8 @@ import com.edubridge.Model.UsersDetails;
 @Controller
 public class UserController 
 {
+	
+	
 	@RequestMapping("/")
 	public String m1()
 	{

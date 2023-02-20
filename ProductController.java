@@ -22,7 +22,7 @@ public class ProductController
 	@RequestMapping("/product/newadd")
 	public String m2(@ModelAttribute("productdata") ProductCatalog p)
 	{
-		p.setProductStatus("Active");
+		p.setProduct_status("Active");
 		ProductCatalogImpl pm=new ProductCatalogImpl();
 		pm.addProductCatalog(p);
 		return "redirect:/product/displayproduct";
@@ -39,4 +39,18 @@ public class ProductController
 		map.addAttribute("singleproduct",ProductCatalogImpl.getProductsByID(pid));
 		return "ViewProduct";
 	}
+	@RequestMapping("/product/modify/{id}")
+	public String m5(@PathVariable("id") int pid, ModelMap map)
+	{
+		ProductCatalog prod=ProductCatalogImpl.displayProductByID(pid);
+		map.addAttribute("modifyproduct",prod);
+		return "ProductCatalog";
+	}
+	@RequestMapping("/product/modifyprod")
+	public String m6(@ModelAttribute("modifyproduct") ProductCatalog p)
+	{
+		ProductCatalogImpl.modifyProductCatalog(p);
+		return "redirect:/product/displayproduct";
+	}
+	
 }
